@@ -2,24 +2,26 @@
 name = "ray-serve"
 version = "0.1.0"
 description = ""
-authors = ["Apoorva Srinivas Appadoo  <apoorva-srinivas.appadoo@etu.univ-cotedazur.fr>"]
+authors = [
+  "Apoorva Srinivas Appadoo  <apoorva-srinivas.appadoo@etu.univ-cotedazur.fr>",
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-ray = {extras = ["serve"], version = "^2.39.0"}
+ray = { extras = ["serve"], version = "^2.39.0" }
 python-multipart = "^0.0.17"
 kornia = "^0.7.4"
 timm = "^1.0.11"
-torchvision = {version = "^0.20.1", source = "pytorch-gpu"}
-torch = {version = "^2.5.1+cu118", source = "pytorch-gpu"}
-torchaudio = {version = "^2.5.1+cu118", source = "pytorch-gpu"}
+torchvision = { version = "^0.20.1", source = "pytorch-gpu" }
+torch = { version = "^2.5.1+cu118", source = "pytorch-gpu" }
+torchaudio = { version = "^2.5.1+cu118", source = "pytorch-gpu" }
 
 
 [[tool.poetry.source]]
 name = "pytorch-gpu"
 url = "https://download.pytorch.org/whl/cu118"
-priority = "supplemental"
+# priority = "supplemental" # Breaks ci
 
 [build-system]
 requires = ["poetry-core"]
