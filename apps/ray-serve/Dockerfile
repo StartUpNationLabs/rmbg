@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 # Install Poetry
 RUN sudo apt update && sudo apt install curl -y --no-install-recommends && \
-  curl -sSL https://install.python-poetry.org | python3 - && \
+  curl -sSL https://install.python-poetry.org | sudo python3 - && \
   sudo apt remove curl -y && sudo apt autoremove -y && sudo apt clean -y && \
   sudo rm -rf /var/lib/apt/lists/*
 
