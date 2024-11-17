@@ -28,7 +28,6 @@ class BGRemover(object):
         logger.info("Initializing BGRemover service.")
         self.model = AutoModelForImageSegmentation.from_pretrained('briaai/RMBG-2.0', trust_remote_code=True)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        # self.device = torch.device("cpu")
         self.model.to(self.device)
         self.model.eval()
         logger.info(f"Model loaded and moved to {self.device}.")
@@ -84,15 +83,21 @@ class BGRemover(object):
                 logger.warning(f"[Request ID: {request_id}] Invalid image file extension.")
                 return JSONResponse(content={"error": "Please upload an image file with extension jpg, jpeg, or png."},
                                     status_code=400)
-            step_elapsed_time = time.time() - step_start_time
-            logger.info(f"[Request ID: {request_id}] File validation completed in {step_elapsed_time:.2f} seconds.")
 
-            # Step 2: Load image
-            step_start_time = time.time()
             image = Image.open(file.file)
-            logger.info(f"[Request ID: {request_id}] Image loaded with size: {image.size}")
             step_elapsed_time = time.time() - step_start_time
-            logger.info(f"[Request ID: {request_id}] Image loading completed in {step_elapsed_time:.2f} seconds.")
+            # Check if image is RGB if not convert to RGB
+            if image.mode != "RGB":
+                logger.info(f"[Request ID: {request_id}] Image is not in RGB mode. Converting to RGB.")
+                image = image.convert("RGB")
+
+            # Check if image size is greater than 20MB
+            if file.file.tell() > 20 * 1024 * 1024:
+                logger.warning(f"[Request ID: {request_id}] Image file size is greater than 20MB.")
+                return JSONResponse(content={"error": "Please upload an image file less than 20MB in size."},
+                                    status_code=400)
+
+            logger.info(f"[Request ID: {request_id}] File validation completed in {step_elapsed_time:.2f} seconds.")
 
             # Step 3: Preprocess the image
             step_start_time = time.time()
