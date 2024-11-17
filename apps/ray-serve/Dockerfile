@@ -4,7 +4,7 @@ FROM rayproject/ray:2.31.0-py310-gpu
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
   DEBIAN_FRONTEND=noninteractive \
-  POETRY_VERSION=1.4.2 \
+  POETRY_VERSION=1.8.4 \
   POETRY_HOME="/home/ray/poetry" \
   POETRY_VENV="/home/ray/poetry-venv" \
   POETRY_CACHE_DIR="/home/ray/.cache"

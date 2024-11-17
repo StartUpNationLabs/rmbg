@@ -21,7 +21,7 @@ torchaudio = { version = "^2.5.1+cu118", source = "pytorch-gpu" }
 [[tool.poetry.source]]
 name = "pytorch-gpu"
 url = "https://download.pytorch.org/whl/cu118"
-# priority = "supplemental"                      # Breaks ci
+priority = "supplemental"                      # Breaks ci
 
 [build-system]
 requires = ["poetry-core"]
