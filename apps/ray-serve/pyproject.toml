@@ -8,7 +8,7 @@ authors = [
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 ray = { extras = ["serve"], version = "^2.39.0" }
 python-multipart = "^0.0.17"
 kornia = "^0.7.4"
