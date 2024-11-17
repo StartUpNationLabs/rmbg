@@ -25,4 +25,4 @@ WORKDIR /app
 COPY ./pyproject.toml ./poetry.lock ./
 
 # Install dependencies using Poetry
-RUN poetry install
+RUN sudo poetry install
