@@ -10,10 +10,10 @@ ENV PYTHONUNBUFFERED=1 \
   POETRY_CACHE_DIR="/opt/.cache"
 
 # Install Poetry
-RUN apt update && apt install curl -y --no-install-recommends && \
+RUN sudo apt update && sudo apt install curl -y --no-install-recommends && \
   curl -sSL https://install.python-poetry.org | python3 - && \
-  apt remove curl -y && apt autoremove -y && apt clean -y && \
-  rm -rf /var/lib/apt/lists/*
+  sudo apt remove curl -y && sudo apt autoremove -y && sudo apt clean -y && \
+  sudo rm -rf /var/lib/apt/lists/*
 
 # Add Poetry to PATH
 ENV PATH="${POETRY_HOME}/bin:$PATH"
