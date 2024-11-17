@@ -38,8 +38,7 @@ cd apps/ray-serve
 This project uses [Poetry](https://python-poetry.org/) for dependency management. Install Poetry if not already installed.
 By defaut the project uses cuda. If you want to use cpu, you can remove the source in the pyproject.toml file for torch, torchvision and torchaudio.
 
-```bash
-Then, install the dependencies:
+Install the dependencies using Poetry:
 
 ```bash
 poetry install
