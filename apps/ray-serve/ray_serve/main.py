@@ -140,6 +140,4 @@ class BGRemover(object):
 
 
 app = BGRemover.bind(
-    name="bgremover",
-    version="1.0",
 )
