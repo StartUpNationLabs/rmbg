@@ -16,7 +16,7 @@ RUN sudo apt update && sudo apt install curl -y --no-install-recommends && \
   sudo rm -rf /var/lib/apt/lists/*
 
 # Add Poetry to PATH
-ENV PATH="${POETRY_HOME}/bin:$PATH"
+ENV PATH="/root/.local/bin:$PATH"
 
 # Set working directory
 WORKDIR /app
