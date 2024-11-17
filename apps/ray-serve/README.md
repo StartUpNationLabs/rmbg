@@ -84,6 +84,8 @@ The FastAPI endpoints will be available at `http://127.0.0.1:8000`. Documentatio
 
 - **`serve_config.yaml`**: Manage Ray Serve deployment configurations such as autoscaling and replicas.
 
+In production the application is deployed with `/bgremover` as the base path. This can be configured in the `serve_config.yaml` file.
+
 ### Running using serve_config.yaml
 
 ```bash
