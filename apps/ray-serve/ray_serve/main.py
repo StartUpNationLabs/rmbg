@@ -27,7 +27,8 @@ class BGRemover(object):
     def __init__(self):
         logger.info("Initializing BGRemover service.")
         self.model = AutoModelForImageSegmentation.from_pretrained('briaai/RMBG-2.0', trust_remote_code=True)
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device("cpu")
         self.model.to(self.device)
         self.model.eval()
         logger.info(f"Model loaded and moved to {self.device}.")
@@ -114,7 +115,7 @@ class BGRemover(object):
             # Step 4: Prediction
             step_start_time = time.time()
             with torch.no_grad():
-                with torch.amp.autocast('cuda', enabled=True):  # Enable FP16 inference
+                with torch.amp.autocast(self.device.type, enabled=(self.device.type == "cuda")):
                     preds = self.model(input_images)[-1].sigmoid().cpu()
             step_elapsed_time = time.time() - step_start_time
             logger.info(f"[Request ID: {request_id}] Prediction completed in {step_elapsed_time:.2f} seconds.")
