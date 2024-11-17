@@ -20,13 +20,6 @@ WORKDIR /app
 
 # Copy project files from the ray-serve app directory
 COPY ./pyproject.toml ./poetry.lock ./
-COPY ray_serve ./ray_serve
 
 # Install dependencies using Poetry
 RUN poetry install
-
-# Expose the port the app runs on
-EXPOSE 8000
-
-# Start the service (Ray is already configured in the base image)
-CMD ["serve", "run", "ray_serve/main:app"]
