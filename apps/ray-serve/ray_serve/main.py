@@ -27,8 +27,7 @@ class BGRemover(object):
     def __init__(self):
         logger.info("Initializing BGRemover service.")
         self.model = AutoModelForImageSegmentation.from_pretrained('briaai/RMBG-2.0', trust_remote_code=True)
-        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.device = torch.device("cpu")
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
         self.model.eval()
         logger.info(f"Model loaded and moved to {self.device}.")
